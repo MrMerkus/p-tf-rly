@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Baran Ahmethan Kaya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:      #F7F3EC;
+    --cream-dark: #EDE7DB;
+    --ink:        #1C1C2E;
+    --ink-soft:   #3B3B52;
+    --green:      #2D6A4F;
+    --green-lt:   #52B788;
+    --orange:     #E76F51;
+    --gold:       #C9993A;
+    --border:     rgba(28,28,46,0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ───── NAV ───── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 5vw;
+    background: rgba(247,243,236,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+
+  /* ───── HERO ───── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5vw;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-lines {
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      transparent, transparent 34px,
+      var(--cream-dark) 34px, var(--cream-dark) 35px
+    );
+    opacity: 0.55;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; padding-top: 6rem; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green); font-weight: 500; margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 2rem; height: 2px; background: var(--green);
+  }
+  h1.hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  h1.hero-name em {
+    font-style: italic;
+    color: var(--orange);
+  }
+  .typewriter-wrap {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    color: var(--ink-soft);
+    min-height: 2.2em;
+    margin-bottom: 2rem;
+  }
+  .typewriter-cursor {
+    display: inline-block;
+    width: 2px; height: 1.1em;
+    background: var(--orange);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: blink 0.9s step-end infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
+  .tag {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
+    padding: 0.35rem 0.85rem;
+    border: 1.5px solid var(--border);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+  }
+  .tag:hover { border-color: var(--green); color: var(--green); }
+  .cta-row { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--green); }
+  .btn-ghost {
+    color: var(--ink);
+    padding: 0.85rem 1.5rem;
+    text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+    border-bottom: 2px solid var(--orange);
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--orange); }
+
+  /* Hero stat block */
+  .hero-right { position: relative; padding-top: 5rem; }
+  .stat-card {
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: 8px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    top: -2rem; left: 1rem;
+    line-height: 1;
+  }
+  .stat-card blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--cream);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(247,243,236,0.55); margin-top: 0.3rem;
+  }
+  .dot-accent {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 8rem; height: 8rem;
+    border-radius: 50%;
+    background: var(--orange);
+    opacity: 0.15;
+  }
+
+  /* ───── SECTIONS COMMON ───── */
+  section { padding: 7rem 5vw; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--green); font-weight: 500;
+    display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; max-width: 3rem; height: 1px; background: var(--green);
+  }
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  h2.section-title em { color: var(--orange); font-style: italic; }
+  .section-sub {
+    font-size: 1rem; color: var(--ink-soft);
+    max-width: 42rem; margin-bottom: 3.5rem; line-height: 1.8;
+  }
+
+  /* ───── ABOUT ───── */
+  #about { background: var(--cream-dark); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+  .about-portrait {
+    position: relative;
+    aspect-ratio: 3/4;
+    background: var(--ink);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .portrait-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; font-weight: 800;
+    color: rgba(247,243,236,0.12);
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+  .portrait-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(28,28,46,0.85));
+    padding: 2rem;
+    color: var(--cream);
+  }
+  .portrait-overlay .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 600;
+  }
+  .portrait-overlay .dob {
+    font-size: 0.78rem; letter-spacing: 0.1em; color: rgba(247,243,236,0.6);
+  }
+  .corner-tag {
+    position: absolute; top: 1rem; right: 1rem;
+    background: var(--orange);
+    color: white; font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem; border-radius: 3px;
+  }
+  .about-text {}
+  .about-text p { color: var(--ink-soft); margin-bottom: 1.2rem; line-height: 1.85; }
+  .value-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; }
+  .value-pill {
+    padding: 0.4rem 1rem;
+    background: var(--cream);
+    border-radius: 999px;
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--ink);
+    border: 1.5px solid var(--border);
+  }
+
+  /* ───── INTERESTS ───── */
+  #interests {}
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .interest-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem 1.75rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .interest-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--orange);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .interest-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(28,28,46,0.08); }
+  .interest-card:hover::after { transform: scaleX(1); }
+  .interest-icon {
+    font-size: 2rem; margin-bottom: 1.2rem; display: block;
+  }
+  .interest-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .interest-desc { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ───── VISION ───── */
+  #vision { background: var(--ink); color: var(--cream); }
+  #vision .section-label { color: var(--green-lt); }
+  #vision .section-label::after { background: var(--green-lt); }
+  #vision h2.section-title { color: var(--cream); }
+  #vision .section-sub { color: rgba(247,243,236,0.65); }
+  .vision-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .vision-item { border-left: 2px solid rgba(247,243,236,0.12); padding-left: 1.5rem; }
+  .vision-item-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 800;
+    color: var(--orange); opacity: 0.35;
+    line-height: 1; margin-bottom: 0.75rem;
+  }
+  .vision-item-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--cream); margin-bottom: 0.6rem;
+  }
+  .vision-item-text { font-size: 0.9rem; color: rgba(247,243,236,0.6); line-height: 1.8; }
+  .vision-cta-block {
+    margin-top: 4rem; padding: 2.5rem;
+    border: 1px solid rgba(247,243,236,0.1);
+    border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .vision-cta-block p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-style: italic;
+    color: var(--cream); max-width: 30rem;
+  }
+  .btn-light {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 0.9rem 2rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+    white-space: nowrap;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    /* Buton için varsayılan stilleri sıfırlama */
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn-light:hover { background: var(--orange); color: white; }
+
+  /* ───── MODAL (İLETİŞİM KUTUSU) ───── */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(28,28,46,0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .modal-overlay.active {
+    opacity: 1; visibility: visible;
+  }
+  .modal-content {
+    background: var(--cream);
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    max-width: 90%;
+    width: 420px;
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.2);
+  }
+  .modal-overlay.active .modal-content {
+    transform: translateY(0);
+  }
+  .modal-close {
+    position: absolute; top: 1rem; right: 1.2rem;
+    background: none; border: none; font-size: 2rem; line-height: 1;
+    color: var(--ink-soft); cursor: pointer;
+    transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--orange); }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem;
+    text-align: center;
+    color: var(--ink);
+  }
+  .modal-desc {
+    font-size: 0.9rem; color: var(--ink-soft); text-align: center;
+    margin-bottom: 2rem; line-height: 1.5;
+  }
+  .contact-details {
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 1.2rem;
+    background: white; padding: 1.2rem; border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+  .contact-item:hover { transform: translateY(-2px); border-color: var(--orange); }
+  .contact-icon { font-size: 1.8rem; }
+  .contact-item-info { display: flex; flex-direction: column; overflow: hidden; }
+  .contact-item-info strong { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.2rem; }
+  .contact-item-info a { 
+    color: var(--ink); text-decoration: none; font-weight: 500; font-size: 0.95rem; 
+    transition: color 0.2s; word-break: break-word; 
+  }
+  .contact-item-info a:hover { color: var(--orange); }
+
+  /* ───── FOOTER ───── */
+  footer {
+    padding: 2.5rem 5vw;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.8rem; color: var(--ink-soft);
+  }
+  footer strong { font-family: 'Playfair Display', serif; font-weight: 600; }
+
+  /* ───── RESPONSIVE ───── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding-top: 6rem; }
+    .hero-right { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-portrait { max-height: 20rem; }
+    .interests-grid { grid-template-columns: 1fr 1fr; }
+    .vision-columns { grid-template-columns: 1fr; gap: 2.5rem; }
+  }
+  @media (max-width: 560px) {
+    .interests-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .vision-cta-block { flex-direction: column; }
+  }
+
+  /* Scroll fade-in */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">B<span>.</span>A<span>.</span>K</a>
+  <ul class="nav-links">
+    <li><a href="#about">Hakkımda</a></li>
+    <li><a href="#interests">İlgi Alanları</a></li>
+    <li><a href="#vision">Vizyon</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-lines"></div>
+
+  <div class="hero-content fade-in">
+    <span class="hero-eyebrow">Portföy · 2025</span>
+    <h1 class="hero-name">
+      Baran<br/>
+      <em>Ahmethan</em><br/>
+      Kaya
+    </h1>
+    <div class="typewriter-wrap">
+      <span id="typewriter-text"></span><span class="typewriter-cursor"></span>
+    </div>
+    <div class="hero-tags">
+      <span class="tag">Girişimci</span>
+      <span class="tag">İçerik Üretici</span>
+      <span class="tag">Yapay Zeka</span>
+      <span class="tag">Finans</span>
+      <span class="tag">Felsefe</span>
+      <span class="tag">Yazılım</span>
+    </div>
+    <div class="cta-row">
+      <a href="#vision" class="btn-primary">Vizyonumu Keşfet</a>
+      <a href="#about" class="btn-ghost">Beni Tanı</a>
+    </div>
+  </div>
+
+  <div class="hero-right fade-in">
+    <div class="stat-card">
+      <blockquote>
+        "Her anımda kendime bir şeyler katmak istiyorum. Yerinde oturmak değil, ilerlemeye doyamamak — bu benim en temel güdüm."
+      </blockquote>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <div class="stat-num">16</div>
+          <div class="stat-label">Yaş</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">İlgi Alanı</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Merak</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Hedef: Büyük Olmak</div>
+        </div>
+      </div>
+      <div class="dot-accent"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid fade-in">
+    <div class="about-portrait">
+      <div class="portrait-initials">BAK</div>
+      <div class="portrait-overlay">
+        <div class="name">Baran Ahmethan Kaya</div>
+        <div class="dob">08 Ocak 2010</div>
+      </div>
+      <div class="corner-tag">Genç Girişimci</div>
+    </div>
+    <div class="about-text">
+      <span class="section-label">Hakkımda</span>
+      <h2 class="section-title">Kendine güvenen,<br/><em>hiç durmayan</em> bir zihin</h2>
+      <p>
+        Merhaba, ben Baran Ahmethan Kaya. Henüz 16 yaşında olmama rağmen girişimcilik, yapay zeka, yazılım ve finans gibi alanlarda küçük ama kararlı adımlar atıyorum.
+      </p>
+      <p>
+        Problem çözmeyi seven biri olarak yerimde oturmak benim için pek mümkün değil. Her gün bir öncekinden daha iyi olmaya çalışıyor; kitaplar okuyuyor, fikirler üretiyor, insanlarla anlamlı konuşmalar yapıyorum.
+      </p>
+      <p>
+        Felsefeye olan ilgim beni derinlemesine düşündürüyor. Büyük filozofların hayat görüşlerini sindirirken, aynı zamanda günümüzün yapay zeka araçlarını ve dijital dünyasını da yakından takip ediyorum. Bu iki dünya arasındaki denge — geçmişin bilgeliği ve geleceğin teknolojisi — beni ben yapan şey.
+      </p>
+      <div class="value-pills">
+        <span class="value-pill">Öz Güven</span>
+        <span class="value-pill">Sürekli Gelişim</span>
+        <span class="value-pill">Problem Çözme</span>
+        <span class="value-pill">Merak</span>
+        <span class="value-pill">Girişimcilik Ruhu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <div style="text-align:center; max-width: 48rem; margin: 0 auto 3.5rem;">
+    <span class="section-label" style="justify-content:center;">İlgi Alanlarım</span>
+    <h2 class="section-title">Zamanımı nasıl <em>harcadığım</em></h2>
+    <p class="section-sub" style="margin: 0.75rem auto 0;">Her ilgi alanı benim için ayrı bir pencere — dünyayı farklı açılardan görmek ve ona katkı sunmak için.</p>
+  </div>
+  <div class="interests-grid fade-in">
+    <div class="interest-card">
+      <span class="interest-icon">🚀</span>
+      <div class="interest-title">Girişimcilik</div>
+      <p class="interest-desc">Küçük çaplı projeler deneyerek girişimcilik dünyasına adımımı attım. Fikir üretmek, riski hesaplamak ve harekete geçmek — bu sürecin her aşamasını seviyorum.</p>
+    </div>
+    <div class="interest-card">
+      <span class="interest-icon">🤖</span>
+      <div class="interest-title">Yapay Zeka</div>
+      <p class="interest-desc">Yapay zeka araçlarını hem öğrenmek hem de üretkenliğimi artırmak için aktif olarak kullanıyorum. Bu alan benim için sadece bir araç değil, bir fırsat kapısı.</p>
+    </div>
+    <div class="interest-card">
+      <span class="interest-icon">📲</span>
+      <div class="interest-title">İçerik Üretimi</div>
+      <p class="interest-desc">Sosyal medyada içerik üreterek hem kendimi ifade ediyor hem de insanlara değer katmaya çalışıyorum. Söz ve görsel bir araya gelince güçlü bir etki yaratılıyor.</p>
+    </div>
+    <div class="interest-card">
+      <span class="interest-icon">📚</span>
+      <div class="interest-title">Kitap & Yazarlık</div>
+      <p class="interest-desc">Kütüphanemde biriken kitapları okumak ve elimden geldiğince insanlara destek vermek benim için bir alışkanlık değil, bir sorumluluk.</p>
+    </div>
+    <div class="interest-card">
+      <span class="interest-icon">💹</span>
+      <div class="interest-title">Finans</div>
+      <p class="interest-desc">Paranın dili evrensel. Finans dünyasını anlamak, akıllı kararlar vermek ve uzun vadeli düşünmek — beni bu alanda büyük hedeflere taşıyacak temel.</p>
+    </div>
+    <div class="interest-card">
+      <span class="interest-icon">🏛️</span>
+      <div class="interest-title">Felsefe</div>
+      <p class="interest-desc">Büyük filozofların düşüncelerini takip etmek bana hayatı daha derin algılama kapasitesi kazandırıyor. Soru sormak, cevabı bulmaktan çok daha değerli.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <span class="section-label">Vizyon</span>
+  <h2 class="section-title" style="color:var(--cream)">Nereye <em>gitmek</em> istiyorum</h2>
+  <p class="section-sub">Bugünün genci, yarının yapıcısı. Hedeflerim somut, enerjim sınırsız, azim ise tartışılmaz.</p>
+
+  <div class="vision-columns fade-in">
+    <div class="vision-item">
+      <div class="vision-item-num">01</div>
+      <div class="vision-item-title">Ölçeklenebilir Girişim Kurmak</div>
+      <p class="vision-item-text">Küçük projelerden öğrendiklerimi birleştirerek gerçek bir değer yaratan, ölçeklenebilir bir girişim inşa etmek istiyorum. Sadece para kazanmak değil; insanların hayatına dokunan bir şey yaratmak.</p>
+    </div>
+    <div class="vision-item">
+      <div class="vision-item-num">02</div>
+      <div class="vision-item-title">Yazı ile İz Bırakmak</div>
+      <p class="vision-item-text">Düşüncelerimi ve birikimlerimi bir kitapta toplamak, gelecek nesillere aktarmak istiyorum. Yazmak benim için iletişimden öte bir miras meselesi.</p>
+    </div>
+    <div class="vision-item">
+      <div class="vision-item-num">03</div>
+      <div class="vision-item-title">Finansal Özgürlük</div>
+      <p class="vision-item-text">Finans okuryazarlığını pratikle birleştirerek kendi geleceğimi şekillendirmeyi ve finansal bağımsızlığa erken ulaşmayı hedefliyorum.</p>
+    </div>
+    <div class="vision-item">
+      <div class="vision-item-num">04</div>
+      <div class="vision-item-title">Topluma Katkı</div>
+      <p class="vision-item-text">Sahip olduğum bilgiyi ve kaynakları başkalarıyla paylaşmak — bu benim için bir tercih değil, bir sorumluluk. Büyüdükçe etkim de büyüsün.</p>
+    </div>
+  </div>
+
+  <div class="vision-cta-block">
+    <p>"Büyük hedefler, küçük adımlarla başlar. Ben o adımları atmaya başladım bile."</p>
+    <button id="open-contact-modal" class="btn-light">İletişime Geç</button>
+  </div>
+</section>
+
+<!-- CONTACT MODAL -->
+<div id="contact-modal" class="modal-overlay">
+  <div class="modal-content">
+    <button id="close-contact-modal" class="modal-close">&times;</button>
+    <h3 class="modal-title">İletişim Bilgilerim</h3>
+    <p class="modal-desc">Benimle aşağıdaki kanallar üzerinden dilediğiniz zaman iletişime geçebilirsiniz.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <span class="contact-icon">📧</span>
+        <div class="contact-item-info">
+          <strong>E-posta</strong>
+          <a href="mailto:kayabaranahmethan@gmail.com">kayabaranahmethan@gmail.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📱</span>
+        <div class="contact-item-info">
+          <strong>Telefon</strong>
+          <a href="tel:+905550000000">+90 (555) 000 00 00</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div><strong>Baran Ahmethan Kaya</strong> · Genç Girişimci</div>
+  <div>© 2025 · Tüm hakları saklıdır</div>
+</footer>
+
+<script>
+  // Typewriter effect
+  const roles = [
+    "Girişimci & Problem Çözücü",
+    "İçerik Üretici",
+    "Yapay Zeka Meraklısı",
+    "Kitap Kurdu & Yazar Adayı",
+    "Genç Finansçı",
+    "Felsefe Tutkunu"
+  ];
+  let roleIndex = 0, charIndex = 0, deleting = false;
+  const el = document.getElementById('typewriter-text');
+
+  function type() {
+    const current = roles[roleIndex];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++charIndex);
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --charIndex);
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+    setTimeout(type, deleting ? 45 : 75);
+  }
+  type();
+
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Modal (Açılır Kutu) Mantığı
+  const modal = document.getElementById('contact-modal');
+  const openBtn = document.getElementById('open-contact-modal');
+  const closeBtn = document.getElementById('close-contact-modal');
+
+  // Butona tıklandığında kutuyu aç
+  openBtn.addEventListener('click', () => {
+    modal.classList.add('active');
+  });
+
+  // Çarpı ikonuna tıklandığında kutuyu kapat
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+
+  // Kutunun dışına (arka plana) tıklandığında kutuyu kapat
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+</script>
+</body>
+</html>
